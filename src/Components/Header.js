@@ -1,14 +1,14 @@
 import React from "react";
 
-export function Header(){
+export function Header({setSignVar}){
     return(
         <div className="Header">
             <div className="Header__logo">
                 S
             </div>
             <div className="Header__Login_register">
-                <buttom>Sign in</buttom>
-                <buttom>Sign up</buttom>
+                <buttom onClick={()=> {setSignVar('Login')}}>Sign in</buttom>
+                <buttom onClick={()=> {setSignVar('Register')}}>Sign up</buttom>
             </div>
         </div>
     )
