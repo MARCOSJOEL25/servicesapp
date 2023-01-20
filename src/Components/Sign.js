@@ -1,7 +1,7 @@
-import React from "react";
+import React,{useState} from "react";
 import "../App.css";
 
-export function Register({setmodelUserLoginVar}) {
+export function Register() {
 
   return (
     <div className="Register">
@@ -38,7 +38,36 @@ export function Register({setmodelUserLoginVar}) {
   );
 }
 
-export function Login() {
+export function Login({setSignVar}) {
+
+  var user = [{
+    Email : "marcos",
+    Password: "123456",
+  }]
+
+  const modelLogin = {
+    Email : "",
+    Password: "",
+  }
+
+  const [contacto, setContacto] = useState(modelLogin)
+
+
+  const IsLogin = ()=>{
+    var confirm = user.some(x=> x.Email === contacto.Email && x.Password === contacto.Password)
+    confirm ? setSignVar("") : setSignVar('Login');
+  }
+
+  const SetUpdate = (e)=> {
+    console.log(e.target.name + " : " + e.target.value)
+
+    setContacto({
+      ...contacto,
+      [e.target.name]: e.target.value
+    })
+  }
+
+
   return (
     <div className="Login">
       <div>
@@ -49,19 +78,23 @@ export function Login() {
       <input 
         type="text" 
         id="lname" 
-        name="lastname" 
+        name="Email" 
         placeholder="Email.." 
+        onChange={(e) =>  SetUpdate(e) }
+        value={contacto.Email}
         />
 
       <label for="fname">Pasword</label>
       <input
         type="text"
         id="fname"
-        name="firstname"
+        name="Password"
         placeholder="Pasword.."
+        onChange={(e) => SetUpdate(e) }
+        value={contacto.Password}
       />
 
-      <input type="submit" />
+      <input type="submit" onClick={()=> IsLogin()}/>
     </div>
   );
 }

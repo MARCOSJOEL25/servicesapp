@@ -4,15 +4,7 @@ import { Register, Login } from "./Components/Sign";
 import React, { useState } from "react";
 
 function App() {
-  var userLogin = []
-
-  var modelUserLogin = {
-    'Email': "",
-    'Password': ""
-  }
- 
-  const [SignVar, setSignVar] = useState("");
-  const [modelUserLoginVar, setmodelUserLoginVar] = useState(modelUserLogin);
+  const [SignVar, setSignVar] = useState("Login");
 
   var template = "";
   const Sign = () => {
@@ -21,10 +13,10 @@ function App() {
         template = <Register />;
         break;
       case "Login":
-        template = <Login setmodelUserLoginVar={setmodelUserLoginVar} />;
+        template = <Login setSignVar={setSignVar}/>;
         break;
       default:
-        template = <div>{'Nothing'}</div>
+        template = <div>{'Welcome'}</div>
     }
     return <div>{template}</div>;
   };
